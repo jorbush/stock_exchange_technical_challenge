@@ -1,5 +1,5 @@
-from stock_exchanger import StockExchanger
-from eagy_broker import EagyBroker
+from src.stock_exchanger import StockExchanger
+from src.eagy_broker import EagyBroker
 from queue import Queue
 import threading
 
