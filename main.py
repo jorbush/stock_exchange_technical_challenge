@@ -1,16 +1,17 @@
-# This is a sample Python script.
+def stock_exchanger_broadcast():
+    current_share_price = 0
+    num_shares_sold = 0
+    num_shares_bought = 0
+    return { current_share_price, num_shares_sold, num_shares_bought }
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+def eagy_broker_suggestion(share, num_shares_sold, num_shares_bought, initial_share_price, current_share_price):
+    overall_number = num_shares_sold + num_shares_bought
+    if num_shares_sold > 2000 and current_share_price <= (initial_share_price - (initial_share_price * (10/100))):
+        # Eagy Broker suggests to buy
+        raise NotImplementedError
+    elif  num_shares_bought > 2000 and current_share_price >= (initial_share_price + (initial_share_price * (10/100))):
+        # Eagy Broker suggests to sell
+        raise NotImplementedError
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    raise NotImplementedError
