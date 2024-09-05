@@ -41,7 +41,6 @@ class TestEagyBroker(unittest.TestCase):
         self.broker.initial_prices['AMZN'] = 100
         self.broker.current_prices['AMZN'] = 80
         self.broker.num_shares_sold['AMZN'] = 2100
-
         suggestion = self.broker.suggest('AMZN')
         self.assertEqual(suggestion, "Eagy Broker suggests to BUY AMZN")
 
@@ -51,7 +50,6 @@ class TestEagyBroker(unittest.TestCase):
         self.broker.initial_prices['AMZN'] = 100
         self.broker.current_prices['AMZN'] = 130
         self.broker.num_shares_bought['AMZN'] = 2200
-
         suggestion = self.broker.suggest('AMZN')
         self.assertEqual(suggestion, "Eagy Broker suggests to SELL AMZN")
 
