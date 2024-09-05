@@ -31,15 +31,18 @@ class StockExchanger:
                     shares_sold, shares_bought = randint(1, 1000), 0
                     self.num_shares_sold += shares_sold
                 else:
-                    shares_bought, shares_sold  = randint(1, 1000), 0
+                    shares_bought, shares_sold = randint(1, 1000), 0
                     self.num_shares_bought += shares_bought
-                self.queue.put((self.share, 'volume', shares_sold, shares_bought))
+                self.queue.put(
+                    (self.share, 'volume', shares_sold, shares_bought))
             time.sleep(1)
 
     def update_price(self):
         """Updates the price based on the amount of shares bought or sold."""
-        if self.num_shares_bought + self.num_shares_sold == 0: return
-        p_increase = self.num_shares_sold / (self.num_shares_bought + self.num_shares_sold)
+        if self.num_shares_bought + self.num_shares_sold == 0:
+            return
+        p_increase = self.num_shares_sold / \
+            (self.num_shares_bought + self.num_shares_sold)
         if random() < p_increase:
             self.current_price = int(self.current_price * 1.1)
         else:

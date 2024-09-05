@@ -1,5 +1,3 @@
-from datetime import datetime
-
 class EagyBroker:
     def __init__(self):
         self.initial_prices = {}
@@ -28,11 +26,12 @@ class EagyBroker:
     def suggest(self, share):
         """Suggests an operation."""
         initial_price, current_price = self.initial_prices[share], self.current_prices[share]
-        num_shares_sold, num_shares_bought = self.num_shares_sold[share], self.num_shares_bought[share]
+        num_shares_sold, num_shares_bought = self.num_shares_sold[
+            share], self.num_shares_bought[share]
         print(
             f"\nnum_shares_sold: {num_shares_sold} num_shares_bought: {num_shares_bought} initial_price: {initial_price} current_price: {current_price}")
         if num_shares_sold > 2000 and current_price <= initial_price * 0.9:
-            return f"{datetime.now()} - Eagy Broker suggests to BUY {share}"
+            return f"Eagy Broker suggests to BUY {share}"
         elif num_shares_bought > 2000 and current_price >= initial_price * 1.1:
-            return f"{datetime.now()} - Eagy Broker suggests to SELL {share}"
-        return f"{datetime.now()} - Eagy Broker suggests to HOLD {share}"
+            return f"Eagy Broker suggests to SELL {share}"
+        return f"Eagy Broker suggests to HOLD {share}"
