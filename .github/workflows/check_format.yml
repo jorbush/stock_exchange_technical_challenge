@@ -1,4 +1,4 @@
-name: Autopep8 Check
+name: Autopep8 Check Format
 
 on:
   push:
