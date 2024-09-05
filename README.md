@@ -10,14 +10,20 @@ Implement _Eagy Broker_ so that it could tell us when to buy and when to sell ea
 
 ## Solution
 
-### Run the example
+### Run the solution
 
 ```shell
-python main.py
+python stock_exchange_technical_challenge.py
 ```
 
 ### Testing 
 
 ```shell
 python -m unittest discover -s tests
+```
+
+### Format
+
+```bash
+autopep8 --recursive --exclude venv --in-place .
 ```

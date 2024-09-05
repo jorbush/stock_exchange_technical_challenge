@@ -3,8 +3,8 @@ from queue import Queue
 from eagy_broker import EagyBroker
 from stock_exchanger import StockExchanger
 
-class TestEagyBroker(unittest.TestCase):
 
+class TestEagyBroker(unittest.TestCase):
     def setUp(self):
         self.broker = EagyBroker()
         self.queue = Queue()
@@ -15,8 +15,10 @@ class TestEagyBroker(unittest.TestCase):
         """Test that the broker subscribes and stores initial and current prices."""
         self.broker.subscribe(self.amzn_exchanger)
         self.assertIn('AMZN', self.broker.initial_prices)
-        self.assertEqual(self.broker.initial_prices['AMZN'], self.amzn_exchanger.initial_price)
-        self.assertEqual(self.broker.current_prices['AMZN'], self.amzn_exchanger.current_price)
+        self.assertEqual(
+            self.broker.initial_prices['AMZN'], self.amzn_exchanger.initial_price)
+        self.assertEqual(
+            self.broker.current_prices['AMZN'], self.amzn_exchanger.current_price)
         self.assertEqual(self.broker.num_shares_sold['AMZN'], 0)
         self.assertEqual(self.broker.num_shares_bought['AMZN'], 0)
 
@@ -62,6 +64,7 @@ class TestEagyBroker(unittest.TestCase):
         self.broker.num_shares_bought['AMZN'] = 1950
         suggestion = self.broker.suggest('AMZN')
         self.assertEqual(suggestion, "Eagy Broker suggests to HOLD AMZN")
+
 
 if __name__ == '__main__':
     unittest.main()

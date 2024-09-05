@@ -3,6 +3,7 @@ import threading
 import time
 from queue import Queue
 
+
 class StockExchanger:
     def __init__(self, share, queue: Queue):
         self.share = share
@@ -27,5 +28,6 @@ class StockExchanger:
             with self.lock:
                 self.num_shares_sold = randint(1800, 2200)
                 self.num_shares_bought = randint(1800, 2200)
-                self.queue.put((self.share, 'volume', self.num_shares_sold, self.num_shares_bought))
+                self.queue.put(
+                    (self.share, 'volume', self.num_shares_sold, self.num_shares_bought))
             time.sleep(1)
