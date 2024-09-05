@@ -1,11 +1,34 @@
 from stock_exchanger import StockExchanger
 from eagy_broker import EagyBroker
+from queue import Queue
+import threading
+
+def stock_exchange_technical_challenge():
+    event_queue = Queue()
+
+    amazon_exchanger = StockExchanger('AMZN', event_queue)
+    apple_exchanger = StockExchanger('AAPL', event_queue)
+    broker = EagyBroker()
+
+    broker.subscribe(amazon_exchanger)
+    broker.subscribe(apple_exchanger)
+
+    amazon_price_thread = threading.Thread(target=amazon_exchanger.broadcast_price, daemon=True)
+    amazon_volume_thread = threading.Thread(target=amazon_exchanger.broadcast_volume, daemon=True)
+    apple_price_thread = threading.Thread(target=apple_exchanger.broadcast_price, daemon=True)
+    apple_volume_thread = threading.Thread(target=apple_exchanger.broadcast_volume, daemon=True)
+
+    amazon_price_thread.start()
+    amazon_volume_thread.start()
+    apple_price_thread.start()
+    apple_volume_thread.start()
+
+    try:
+        while True:
+            broker.process_event(event_queue.get())
+    except KeyboardInterrupt:
+        print(f"\nSimulation stopped.")
+        pass
 
 if __name__ == '__main__':
-    share = "AMZN"
-    exchanger = StockExchanger(share)
-    broker = EagyBroker()
-    # simulate 10 exchanges
-    for _ in range(10):
-        current_price, num_shares_sold, num_shares_bought = exchanger.broadcast()
-        print(broker.suggest(share, num_shares_sold, num_shares_bought, exchanger.get_initial_price(), current_price))
+    stock_exchange_technical_challenge()
